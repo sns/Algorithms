@@ -1,0 +1,31 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            // in webpack you need to add -> resolve: { alias: { '@src': PATH_TO_SRC } }
+            "@DataStructures/*": ["./DataStructures/*"]
+        },
+        "allowSyntheticDefaultImports": true, // no errors on commonjs default import
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true, // importing helper functions from tslib
+        "jsx": "react",
+        "lib": ["dom", "es2015", "es2016.array.include"],
+        "target": "es5", // "es2015" for ES6+ engines
+        "module": "commonjs",
+        "moduleResolution": "node",
+        //"strict": true,
+        "forceConsistentCasingInFileNames": false,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": false,
+        "noImplicitReturns": false,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": false,
+        "noEmitOnError": true,
+        "removeComments": true,
+        "sourceMap": true
+    },
+    "exclude": ["bin", "obj", "node_modules"]
+}
