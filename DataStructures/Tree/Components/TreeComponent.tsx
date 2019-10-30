@@ -3,19 +3,14 @@ import { Tree, ReactD3TreeItem, ReactD3TreeTranslate } from "react-d3-tree";
 import { fill } from "lodash";
 
 export interface Props {
-    data: ReactD3TreeItem[];
+    data: number[];
+    style: React.CSSProperties;
 }
 
 interface State {
     translate?: Partial<ReactD3TreeTranslate>;
+    treeData: ReactD3TreeItem[];
 }
-
-const styles = {
-    containerStyles: {
-        width: "100%",
-        height: "100vh",
-    } as React.CSSProperties,
-};
 
 export const buildTreeData = (data: number[]): ReactD3TreeItem[] => {
     if (data.length === 0) {
@@ -59,12 +54,26 @@ export class TreeComponent extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            translate: {
-                x: 0,
-                y: 0,
-            },
+            treeData: buildTreeData(props.data),
         };
     }
+
+    componentDidUpdate(prevProps: Props) {
+        if (
+            prevProps.data.length !== this.props.data.length ||
+            !this.props.data.every((v, i) => v === prevProps.data[i])
+        ) {
+            const dimensions = this.treeContainer.getBoundingClientRect();
+            this.setState({
+                treeData: buildTreeData(this.props.data),
+                translate: {
+                    x: dimensions.width / 2,
+                    y: dimensions.height / 2,
+                },
+            });
+        }
+    }
+
     componentDidMount() {
         const dimensions = this.treeContainer.getBoundingClientRect();
         this.setState({
@@ -82,11 +91,11 @@ export class TreeComponent extends React.Component<Props, State> {
         return (
             <div
                 id="treeWrapper"
-                style={styles.containerStyles}
+                style={this.props.style}
                 ref={tc => (this.treeContainer = tc)}
             >
                 <Tree
-                    data={this.props.data}
+                    data={this.state.treeData}
                     orientation="vertical"
                     pathFunc="straight"
                     translate={this.state.translate}
