@@ -15,7 +15,8 @@
         "build:watch": "npm run webpack:watch",
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "webpack-dev-server --mode development --open --hot",
-        "build": "webpack --mode production"
+        "build": "webpack --mode production",
+        "heroku-postbuild": "npm install --no-shrinkwrap && npm run build:release"
     },
     "repository": {
         "type": "git",
