@@ -2,6 +2,8 @@ const path = require("path");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+const PORT = process.env.PORT || 8001
+
 module.exports = {
     entry: "./main.tsx",
     output: {
@@ -11,7 +13,7 @@ module.exports = {
     },
     devServer: {
         inline: true,
-        port: 8001,
+        port: PORT,
     },
 
     devtool: "inline-cheap-module-source-map",
