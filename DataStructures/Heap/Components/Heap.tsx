@@ -1,18 +1,18 @@
-import * as React from "react";
-import Button from "@material-ui/core/Button";
-import { TextField, InputLabel } from "@material-ui/core";
-import { TreeComponent } from "@DataStructures/Tree/Components/TreeComponent";
-import { Heap as HeapTree } from "@DataStructures/Heap/Heap";
+import * as React from "react"
+import Button from "@material-ui/core/Button"
+import { TextField, InputLabel } from "@material-ui/core"
+import { TreeComponent } from "@DataStructures/Tree/Components/TreeComponent"
+import { Heap as HeapTree } from "@DataStructures/Heap/Heap"
 
 interface Props {}
 interface State {
-    inputValue: string;
-    isValidInput: boolean;
-    heap: HeapTree;
-    treeData: number[];
+    inputValue: string
+    isValidInput: boolean
+    heap: HeapTree
+    treeData: number[]
 }
 
-const VALID_INPUT_REGEX = "^[0-9]*(,[0-9]*)*$";
+const VALID_INPUT_REGEX = "^[0-9]*(,[0-9]*)*$"
 
 const styles = {
     controlContainer: {
@@ -28,65 +28,65 @@ const styles = {
         width: "100%",
         height: "100vh",
     } as React.CSSProperties,
-};
+}
 export class Heap extends React.Component<Props, State> {
-    private regex = RegExp(VALID_INPUT_REGEX);
+    private regex = RegExp(VALID_INPUT_REGEX)
     constructor(props: Props) {
-        super(props);
+        super(props)
         this.state = {
             inputValue: "",
             isValidInput: true,
             heap: new HeapTree([], false),
             treeData: [],
-        };
+        }
     }
 
     getHeapDataFromInput = (): number[] => {
         if (this.regex.test(this.state.inputValue)) {
             return this.state.inputValue
                 .split(",")
-                .map(x => parseInt(x))
-                .filter(x => !isNaN(x));
+                .map(x => parseInt(x, 10))
+                .filter(x => !isNaN(x))
         }
-        return [];
-    };
+        return []
+    }
 
     onClickGetMinHeap = () => {
         if (this.regex.test(this.state.inputValue)) {
-            const data = this.getHeapDataFromInput();
-            const heap = new HeapTree(data, true);
+            const data = this.getHeapDataFromInput()
+            const heap = new HeapTree(data, true)
             this.setState({
                 heap: heap,
                 treeData: heap.getData(),
-            });
+            })
         } else {
             this.setState({
                 isValidInput: false,
-            });
+            })
         }
-    };
+    }
 
     onClickGetMaxHeap = () => {
         if (this.regex.test(this.state.inputValue)) {
-            const data = this.getHeapDataFromInput();
-            const heap = new HeapTree(data, false);
+            const data = this.getHeapDataFromInput()
+            const heap = new HeapTree(data, false)
             this.setState({
                 heap: heap,
                 treeData: heap.getData(),
-            });
+            })
         } else {
             this.setState({
                 isValidInput: false,
-            });
+            })
         }
-    };
+    }
 
     onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
             inputValue: e.currentTarget.value.trim(),
             isValidInput: this.regex.test(e.currentTarget.value.trim()),
-        });
-    };
+        })
+    }
 
     renderInput() {
         return (
@@ -98,12 +98,12 @@ export class Heap extends React.Component<Props, State> {
                 variant="outlined"
                 onChange={this.onChangeInputValue}
             />
-        );
+        )
     }
 
     renderValidationErrors() {
         if (!this.state.isValidInput) {
-            return <InputLabel error={true}>Invalid Input</InputLabel>;
+            return <InputLabel error={true}>Invalid Input</InputLabel>
         }
     }
 
@@ -117,7 +117,7 @@ export class Heap extends React.Component<Props, State> {
             >
                 Show Max Heap
             </Button>
-        );
+        )
     }
 
     renderGetMinHeapButton() {
@@ -130,7 +130,7 @@ export class Heap extends React.Component<Props, State> {
             >
                 Show Min Heap
             </Button>
-        );
+        )
     }
 
     renderTree() {
@@ -140,7 +140,7 @@ export class Heap extends React.Component<Props, State> {
                     data={this.state.treeData}
                     style={styles.treeContainer}
                 />
-            );
+            )
         }
     }
 
@@ -156,8 +156,8 @@ export class Heap extends React.Component<Props, State> {
                 </div>
                 {this.renderTree()}
             </div>
-        );
+        )
     }
 }
 
-export default Heap;
+export default Heap
