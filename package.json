@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "lint:react": "tslint --project tsconfig.json \"**/*.ts?(x)\"",
-        "lint:react:fix": "tslint --project tsconfig.json \"**/*.ts?(x)\" --fix",
+        "lint:fix": "tslint --project tsconfig.json \"**/*.ts?(x)\" --fix",
         "tsc": "tsc --noEmit",
         "webpack:debug": "webpack --mode development",
         "webpack:release": "webpack --mode production --devtool none",
