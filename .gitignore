@@ -39,3 +39,4 @@ build/**/*
 client/build/**/*
 
 package-lock.json
+client/package-lock.json
