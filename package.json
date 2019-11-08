@@ -7,14 +7,14 @@
   "description": "Full Stack App Powered by Express and React",
   "main": "server.js",
   "scripts": {
-    "tsc": "tsc --noEmit",
-    "start": "node ./build/App.js",
+    "tsc": "tsc",
+    "start": "node ./build/app.js",
     "dev-client": "cd client && npm run start",
-    "dev-server": "nodemon --exec ./node_modules/.bin/ts-node -- ./server/App.ts",
+    "dev-server": "nodemon --exec ./node_modules/.bin/ts-node -- ./server/app.ts",
     "test": "cd client && npm test",
-    "heroku-postbuild": "npm run install && npm run tsc && npm run watch",
+    "heroku-postbuild": "tsc & cd client/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "watch": "concurrently \"npm run dev-server\" \"npm run dev-client\"",
-    "install": "cd client/ && npm install --only=dev --no-shrinkwrap && npm install --only=dev --no-shrinkwrap"
+    "install": "cd client/ && npm install && npm install --only=dev --no-shrinkwrap"
   },
   "repository": {
     "type": "git",
