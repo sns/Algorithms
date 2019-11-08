@@ -1,8 +1,8 @@
 import * as React from "react";
 import Button from "@material-ui/core/Button";
 import { TextField, InputLabel } from "@material-ui/core";
-import { TreeComponent } from "@DataStructures/Tree/Components/TreeComponent";
-import { Heap as HeapTree } from "@DataStructures/Heap/Heap";
+import TreeComponent from "../../Tree/Components/TreeComponent";
+import { Heap as HeapTree } from "../../Heap/Heap";
 
 interface Props {}
 interface State {
