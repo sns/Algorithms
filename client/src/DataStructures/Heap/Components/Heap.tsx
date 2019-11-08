@@ -102,9 +102,10 @@ export class Heap extends React.Component<Props, State> {
     }
 
     renderValidationErrors() {
-        if (!this.state.isValidInput) {
-            return <InputLabel error={true}>Invalid Input</InputLabel>;
+        if (this.state.isValidInput) {
+            return null;
         }
+        return <InputLabel error={true}>Invalid Input</InputLabel>;
     }
 
     renderGetMaxHeapButton() {
@@ -134,14 +135,16 @@ export class Heap extends React.Component<Props, State> {
     }
 
     renderTree() {
-        if (this.state.heap.getData().length > 0) {
-            return (
-                <TreeComponent
-                    data={this.state.treeData}
-                    style={styles.treeContainer}
-                />
-            );
+        if (this.state.heap.getData().length === 0) {
+            return null;
         }
+        
+        return (
+            <TreeComponent
+                data={this.state.treeData}
+                style={styles.treeContainer}
+            />
+        );        
     }
 
     render() {

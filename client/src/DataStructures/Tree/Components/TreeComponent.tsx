@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Tree, ReactD3TreeItem, ReactD3TreeTranslate } from "react-d3-tree";
 import { fill } from "lodash";
+import { isNullOrUndefined } from "util";
 
 export interface Props {
     data: number[];
@@ -37,7 +38,7 @@ export const buildTreeData = (data: number[]): ReactD3TreeItem[] => {
             const parentNode = treeData.find(
                 x => x.name === parentIndex.toString()
             );
-            if (parentNode) {
+            if (!isNullOrUndefined(parentNode)) {
                 parentNode.children.push(node);
             }
         }
