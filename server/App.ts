@@ -1,7 +1,7 @@
 import * as express from "express";
 import * as path from "path";
 
-const app: express.Application = express();
+const app: express.Application = express.default();
 const port = process.env.PORT || 8001;
 
 // Static file declaration
