@@ -14,7 +14,8 @@
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "tslint:fix": "tslint --fix --project .",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap"
   },
   "proxy": "http://localhost:8001",
   "devDependencies": {
