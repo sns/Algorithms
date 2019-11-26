@@ -3,10 +3,10 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: "./main.tsx",
+    entry: "./src/main.tsx",
     output: {
         filename: "[name]-bundle.js",
-        path: __dirname + "/../dist",
+        path: path.join(__dirname, '/dist'),
         library: "[name]",
     },
     devServer: {
@@ -19,18 +19,20 @@ module.exports = {
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".json"],
         alias: {
-            "@DataStructures": path.resolve(__dirname, "DataStructures"),
+            "@DataStructures": path.resolve(__dirname, "src/DataStructures"),
         },
     },
 
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
-                loader: "ts-loader",
-                options: {
-                    transpileOnly: "true",
-                },
+                test: /\.ts(x?)$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'awesome-typescript-loader'
+                    }
+                ]
             },
             {
                 enforce: "pre",
@@ -42,7 +44,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./index.html",
+            template: "./src/index.html",
         }),
     ],
     optimization: {

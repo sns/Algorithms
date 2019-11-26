@@ -4,7 +4,7 @@
         "baseUrl": "./",
         "paths": {
             // in webpack you need to add -> resolve: { alias: { '@src': PATH_TO_SRC } }
-            "@DataStructures/*": ["./DataStructures/*"]
+            "@DataStructures/*": ["src/DataStructures/*"]
         },
         "allowSyntheticDefaultImports": true, // no errors on commonjs default import
         "emitDecoratorMetadata": true,

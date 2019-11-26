@@ -28,6 +28,9 @@ const styles = {
         width: "100%",
         height: "100vh",
     } as React.CSSProperties,
+    button: {
+        margin: "0px 10px"
+    } as React.CSSProperties,
 };
 export class Heap extends React.Component<Props, State> {
     private regex = RegExp(VALID_INPUT_REGEX);
@@ -127,6 +130,7 @@ export class Heap extends React.Component<Props, State> {
                 color="primary"
                 onClick={this.onClickGetMinHeap}
                 disabled={!this.state.isValidInput}
+                style={styles.button}
             >
                 Show Min Heap
             </Button>
