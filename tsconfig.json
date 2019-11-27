@@ -2,8 +2,13 @@
     "compilerOptions": {
         "baseUrl": "",
         "paths": {
+<<<<<<< HEAD
             "@Src/*": [ "*" ],
             "@DataStructures/*": ["src/DataStructures/*"],
+=======
+            // in webpack you need to add -> resolve: { alias: { '@src': PATH_TO_SRC } }
+            "@DataStructures/*": ["src/DataStructures/*"]
+>>>>>>> tree
         },
         "outDir": "build/dist",
         "module": "commonjs", // "es2015" for tree-shaking
